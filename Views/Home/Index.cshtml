@@ -1,0 +1,41 @@
+﻿@model List<Animal>
+
+<div class="text-center">
+    <h1>
+        Welcome To Kali's  Animal Shelter
+    </h1>
+    <h2>Find your new best friend!</h2>
+    <form asp-controller="Animal" asp-action="ListByBreed" method="get">
+        @{
+            foreach (Animal a in Model.DistinctBy(a => a.Breed))
+
+            {
+                string iconClass = "";
+                switch (a.Breed.ToLower())
+                {
+                    case "cat":
+                        iconClass = "fas fa-cat";
+                        break;
+                    case "dog":
+                        iconClass = "fas fa-dog";
+                        break;
+                    case "bird":
+                        iconClass = "fa-solid fa-crow";
+                        break;
+                    default:
+                        iconClass = "fas fa-paw";
+                        break;
+                }
+                <button type="submit" class="btn-lg btn-light btn-square-md opacity-75" name="breed" value="@a.Breed">
+                    <span style="display:flex; flex-direction:column; align-content:center">
+                        <i class="@iconClass" style="font-size: 40px; font-display:block; margin-bottom: 10px"></i>
+                        <span style="font-size: 16px">@a.Breed</span>
+                    </span>
+                </button>
+            }
+
+        }
+
+    </form>
+</div>
+<img class="rounded-1 bg-opacity-75" style=" width: 100%; height: 405px; object-fit: cover;" src="https://images.unsplash.com/photo-1570824104453-508955ab713e?q=80&w=1911&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />

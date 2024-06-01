@@ -1,0 +1,27 @@
+﻿@model Animal
+
+@{
+    if (Model != null)
+    {
+        <h1>You're so close to your new best friend. Click adopt below to secure your pet.</h1>
+        <div class="col-md-4 mb-4">
+            <div class="container">
+                <div class="card rounded">
+                    <img src="@Model.Img" class="card-img-top img-thumbnail" style="object-fit:cover; width: 100%; height: auto" />
+                    <h2 class="card-title">@Model.Name is @Model.Age</h2>
+                    <p>@Model.Description</p>
+                </div>
+            </div>
+        </div>
+
+        <p>Our team will be in contact with you soon about your pet's new forever home. Once you click adopt, you will be redirected to the homepage</p>
+        <form asp-controller="Animal" asp-action="Delete" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="btn btn-success">Adopt</button>
+        </form>
+    }
+    else
+    {
+        <h1>pet is no longer available</h1>
+    }
+}

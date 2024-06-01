@@ -1,0 +1,29 @@
+﻿@model List<Animal>
+
+
+<div class="container">
+    <div class="row" data-masonry='{"percentPosition": true}'>
+        @{
+            @foreach (Animal a in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card rounded">
+                        <img src="@a.Img" class="card-img-top img-thumbnail" style="object-fit:cover; width: 100%; height: auto" />
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                            <h2 class="card-title">@a.Name, @a.Age</h2>
+                            <p class="card-text">@a.Description</p>
+                            <form asp-controller="Animal" asp-action="ConfirmAdoption" method="get">
+                                <input type="hidden" name="id" value="@a.Id" />
+                                <button type="submit" class="btn btn-success">Adopt</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+
+        }
+    </div>
+
+</div>   
